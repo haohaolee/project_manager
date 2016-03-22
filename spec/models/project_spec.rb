@@ -6,6 +6,6 @@ describe Project do
     user = User.new first_name: 'Hao', last_name: 'Li'
     project = Project.new
     project.user = user
-    expect(project.name).to be("Hao Li's project")
+    expect(project.name).to eq("Hao Li's project")
   end
 end
