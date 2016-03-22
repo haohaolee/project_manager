@@ -13,6 +13,6 @@ When(/^I create a project without a name$/) do
   click_button 'Create Project'
 end
 
-Then(/^the project should be called 'Hao Li's project'$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^the project should be called "([^"]*)"$/) do |project_name|
+  expect(find('.project')).to have_content project_name
 end
