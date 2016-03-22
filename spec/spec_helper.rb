@@ -89,4 +89,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  def random_name
+    ('a'..'z').to_a.sample(5).join
+  end
 end
