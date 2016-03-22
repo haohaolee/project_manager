@@ -7,7 +7,10 @@ Given(/^I'm signed up as "([^"]*)"$/) do |name|
 end
 
 When(/^I create a project without a name$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit projects_path
+  click_link 'New Project'
+  fill_in :project_name, with: ''
+  click_button 'Create Project'
 end
 
 Then(/^the project should be called 'Hao Li's project'$/) do
