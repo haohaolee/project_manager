@@ -3,10 +3,10 @@ require 'spec_helper'
 
 describe Project do
   it 'should be named after the user if no is set' do
-    first_name, last_name = 2.times.map { random_name }
-    user = User.new first_name: first_name, last_name: last_name
+    full_name = random_name
+    user = double User, full_name: full_name
     project = Project.new
-    project.user = user
-    expect(project.name).to eq("#{first_name} #{last_name}'s project")
+    allow(project).to receive(:user).and_return user
+    expect(project.name).to eq("#{full_name}'s project")
   end
 end
