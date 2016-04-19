@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   it 'should query a membership' do
-    memberships = double
+    memberships = double.as_null_object
     user = User.new
     project = mock_model Project
     allow(user).to receive(:memberships).and_return memberships
@@ -15,5 +15,12 @@ describe User do
     project = mock_model Project
     allow(user).to receive_message_chain(:memberships, :where, :exists?).and_return false
     expect(user.member_of? project).to be_falsey
+  end
+
+  it 'should be a member if a membership exists' do
+    user = User.new
+    project = mock_model Project
+    allow(user).to receive_message_chain(:memberships, :where, :exists?).and_return true
+    expect(user.member_of? project).to be_truthy
   end
 end

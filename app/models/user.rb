@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   end
 
   def member_of? project
-    memberships.where project_id: project.id
-    false
+    memberships.where(project_id: project.id).exists?
   end
 end
