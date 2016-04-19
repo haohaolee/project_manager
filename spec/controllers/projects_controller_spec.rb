@@ -12,8 +12,10 @@ describe ProjectsController do
 
   it 'should redirect non-team members to their projects overview' do
     user = double member_of?: false
+    project = mock_model Project
     allow_any_instance_of(ProjectsController).to receive(:current_user).and_return user
-    expect(response).to redirect_to projects_path
+    allow(Project).to receive(:find).and_return project
     get :show, id: project.id
+    expect(response).to redirect_to projects_path
   end
 end

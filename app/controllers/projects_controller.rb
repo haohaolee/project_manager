@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     current_user.member_of? @project
+    redirect_to projects_path
   end
 
   # GET /projects/new
