@@ -16,3 +16,15 @@ end
 Then(/^the project should be called "([^"]*)"$/) do |project_name|
   expect(find('.project')).to have_content project_name
 end
+
+When(/I try to access another user's project/) do
+  another_user = User.new first_name: 'Another user'
+  @project = Project.new
+  @project.user = another_user
+  @project.save!
+  visit project_path(@project)
+end
+
+Then(/I should not see the project/) do
+  expect(page.current_path).not_to eq project_path(@project)
+end
