@@ -17,4 +17,10 @@ describe ProjectsController do
     get :show, id: @project.id
     expect(response).to redirect_to projects_path
   end
+
+  it 'should show the project to team members' do
+    allow(@user).to receive(:member_of?).and_return true
+    get :show, id: @project.id
+    expect(response).to render_template :show
+  end
 end
