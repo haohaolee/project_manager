@@ -9,4 +9,11 @@ describe ProjectsController do
     expect(user).to receive(:member_of?).with(project)
     get :show, id: project.id
   end
+
+  it 'should redirect non-team members to their projects overview' do
+    user = double member_of?: false
+    allow_any_instance_of(ProjectsController).to receive(:current_user).and_return user
+    expect(response).to redirect_to projects_path
+    get :show, id: project.id
+  end
 end
