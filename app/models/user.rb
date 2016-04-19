@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
 
   def member_of? project
     memberships.where project_id: project.id
+    false
   end
 end
